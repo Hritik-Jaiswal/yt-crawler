@@ -3,6 +3,7 @@ const usetube = require("usetube")
 
 const app = express()
 
+const PORT = 5000;
 
 const channel1 = 'UClWTBNGnjXEZOtEwEp9BGTg'
 const channel2 = 'UCz6s_ScG0PZThdwhKsUFSRw'
@@ -77,7 +78,7 @@ app.post('/channel5', async (req, res) => {
     }
 })
 
-app.listen(5000, (req, res) => {
+app.listen( process.env.PORT || PORT, (req, res) => {
     console.log("Server running...")
 })
 
