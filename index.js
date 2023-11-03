@@ -1,7 +1,12 @@
 const express = require("express")
+const bodyParser = require("body-parser")
 const usetube = require("usetube")
 
+
 const app = express()
+// app.use(express.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const PORT = 5000;
 
@@ -13,9 +18,10 @@ const channel5 = 'UCkMtcoYWWFeRH_5xygtl2aA'
 
 
 app.post('/channel1', async (req, res) => {
+    const { search } = req.body
     try {
-        let channelData = await usetube.searchChannel(channel1)
-        let channelVideo = await usetube.getChannelVideos(channel1)
+        let channelData = await usetube.searchChannel(search)
+        let channelVideo = await usetube.getChannelVideos(search)
 
         const videosLength = channelVideo.length
         console.log(videosLength)
